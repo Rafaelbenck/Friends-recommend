@@ -24,21 +24,21 @@ we recommend using `Postman` to make REST API queries
 
 #### Returns
 
-Listagem de pessoas em nosso banco de dados dinamico.
+List of people in our dynamic database.
 
-### User id
+### Userid
 
 ```http
   GET /persons/:cpf
 ```
 
-| Requisição | Tipo     | Descrição                                     |
-| :--------- | :------- | :-------------------------------------------- |
-| `cpf`      | `string` | encontra usuários com únicos pela chave `cpf` |
+| Requisition | Type     | Description                     |
+| :---------- | :------- | :------------------------------ |
+| `cpf`       | `string` | finds unique users by `cpf` key |
 
 #### Returns
 
-um único usuário.
+a single user.
 
 ### Create a user
 
@@ -46,9 +46,9 @@ um único usuário.
   POST /person
 ```
 
-| Parâmetro     | Tipo     | Descrição                   |
+| Parameter     | Type     | Description                 |
 | :------------ | :------- | :-------------------------- |
-| `name`, `cpf` | `string` | Atribuindo valor ao usuário |
+| `name`, `cpf` | `string` | Assigning Value to the User |
 
 ### Clean all users
 
@@ -58,7 +58,7 @@ um único usuário.
 
 #### Returns
 
-deleta toda a lista de amigos e suas relações.
+deletes the entire list of friends and their relationships.
 
 ### Create a relations between users
 
@@ -66,15 +66,15 @@ deleta toda a lista de amigos e suas relações.
   POST /relationship
 ```
 
-| Parâmetro      | Tipo     | Descrição                               |
-| :------------- | :------- | :-------------------------------------- |
-| `cpf1`, `cpf2` | `string` | Função precisa de dois parametros `cpf` |
+| Parameter      | Type     | Description                         |
+| :------------- | :------- | :---------------------------------- |
+| `cpf1`, `cpf2` | `string` | Function needs two parameters `cpf` |
 
 #### Returns
 
-Atribui relação entre usuários (Este valor já deve existir na lista de amigos).
+Assigns relationship between users (This value must already exist in the friends list).
 
-#### Exemplo de entrada:
+#### Example input:
 
 ```http
   {cpf1: 11111111111, cpf2: 22222222222}
@@ -86,51 +86,52 @@ Atribui relação entre usuários (Este valor já deve existir na lista de amigo
   GET /recommendations/:cpf
 ```
 
-| Requisição | Tipo     | Descrição                             |
-| :--------- | :------- | :------------------------------------ |
-| `cpf`      | `string` | Utiliza `cpf` para retornar o usuário |
+| Requisition | Type     | Description                  |
+| :---------- | :------- | :--------------------------- |
+| `cpf`       | `string` | Use `cpf` to return the user |
 
 #### Returns
 
-Retorna um listagem de amigos relacionados e também cada amigo que seu amigo possui relação.
+Returns a list of related friends and also each friend that your friend is related to.
 
-### Exemplo 1:
+### Example 1:
 
-#### Entrada:
+#### Prohibited:
 
 ```http
 curl -i -H 'Accept: application/json' http://localhost:3000/recommendations/11111111111
 ```
 
-#### Saída:
+#### Exit:
 
 ```http
 {
-    "name": "João",
+    "name": "John",
     "cpf": "22222222222",
     "relations": ["111111111111"]
 },
 {
-    "name": "Rafael",
+    "name": "Raphael",
     "cpf": "33333333333",
     "relations": ["111111111111"]
 }
 ```
 
-### Exemplo 2:
+### Example 2:
 
-#### Entrada:
+#### Prohibited:
 
 ```http
 curl -i -H 'Accept: application/json' http://localhost:3000/recommendations/22222222222
 ```
 
-#### Saída:
+#### Exit:
 
 ```http
 {
-    "name": "Pedro",
+    "name": "Peter",
     "cpf": "11111111111",
     "relations": [ "22222222222","33333333333"]
 }
 ```
+
